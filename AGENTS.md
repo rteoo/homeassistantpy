@@ -1,13 +1,20 @@
 # Homepy
 
-Homepy is a Python 3.11+ synchronous wrapper for Home Assistant's REST API.
-Runtime code and tests use the standard library. Source lives in `homepy/`;
+Follow the active runtime's global `AGENTS.md` and `SOUL.md`. This file
+adds project-specific facts and commands; it cannot weaken global approval
+or privacy rules.
+
+Homepy is a Python 3.11+ standard-library client for Home Assistant's REST
+and WebSocket APIs, with explicit JSON tools for agents. Runtime code and
+tests use the standard library. Source lives in `homepy/`;
 tests live in `tests/`. See `README.md` for public usage and `PLAN.md` for scope.
 
 ## Architecture
 
 - `config.py`: immutable connection settings, environment parsing, URL defaults.
 - `transport.py`: one HTTP connection per request, bounded responses, TLS and errors.
+- `websocket_transport.py` and `events.py`: RFC 6455 registry discovery and
+  bounded event observation.
 - `client.py`: endpoint paths, payloads, and query serialization.
 - `agent.py`: JSON function descriptors and service capability policy.
 - `cli.py`: JSON stdout/stderr boundary and environment/argument precedence.
