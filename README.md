@@ -369,3 +369,9 @@ Release history is documented in [CHANGELOG.md](CHANGELOG.md).
 ## License
 
 Homepy is released under the [MIT License](LICENSE).
+
+## Releasing
+
+The `pyproject.toml` version must already be merged to `main`. From a clean checkout matching `origin/main`, run `python release.py --tag vX.Y.Z --dry-run`, then rerun without `--dry-run` and type the tag to confirm.
+
+The release helper runs these gates locally: `python -m unittest discover -s tests -v`, `python -m compileall -q homepy tests`, and `python -S -m homepy --help`. It never bumps, commits, or deploys. A retry is safe only for the same tag when the existing tag points at the exact merged commit and no GitHub release exists; there is no service rollback because this project has no deployment target. The helper uses the current Python runtime; CI remains the authoritative cross-platform check.
