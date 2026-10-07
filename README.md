@@ -380,7 +380,7 @@ The release helper runs these gates locally: `python -m unittest discover -s tes
 
 ### PyPI publishing
 
-`.github/workflows/pypi.yml` runs when a GitHub release is published. It tests
+`.github/workflows/publish.yml` runs when a GitHub release is published. It tests
 Python 3.11 and 3.14, requires a `vX.Y.Z` tag matching `pyproject.toml`, builds and
 checks the source distribution and wheel, and smoke-tests the installed wheel
 before uploading to PyPI. The publishing job uses OIDC Trusted Publishing;
@@ -392,7 +392,7 @@ Before the first publication, register a pending publisher on
 - PyPI project: `homeassistantpy`
 - GitHub owner: `rteoo`
 - GitHub repository: `homeassistantpy`
-- Workflow filename: `pypi.yml`
+- Workflow filename: `publish.yml`
 - GitHub environment: `pypi`
 
 See [PyPI's pending publisher guide](https://docs.pypi.org/trusted-publishers/creating-a-project-through-oidc/).
