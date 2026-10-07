@@ -13,9 +13,9 @@ from threading import Thread
 import unittest
 from unittest.mock import Mock
 
-from homepy import HomeAssistant
-from homepy.cli import main
-from homepy.exceptions import APIError, AuthenticationError, ResponseError, TransportError
+from homeassistantpy import HomeAssistant
+from homeassistantpy.cli import main
+from homeassistantpy.exceptions import APIError, AuthenticationError, ResponseError, TransportError
 
 
 def fixture_environment(url):
@@ -138,7 +138,7 @@ class HTTPIntegrationTests(unittest.TestCase):
         with home_assistant_server() as (url, requests):
             env = fixture_environment(url)
             root = Path(__file__).resolve().parents[1]
-            result = subprocess.run([sys.executable, "-m", "homepy", "health"], cwd=root,
+            result = subprocess.run([sys.executable, "-m", "homeassistantpy", "health"], cwd=root,
                                     env=env, capture_output=True, text=True, timeout=10)
             self.assertEqual(result.returncode, 0, result.stderr)
             self.assertEqual(json.loads(result.stdout), {"message": "API running."})
@@ -148,7 +148,7 @@ class HTTPIntegrationTests(unittest.TestCase):
         with home_assistant_server() as (url, requests):
             env = fixture_environment(url)
             root = Path(__file__).resolve().parents[1]
-            result = subprocess.run([sys.executable, "-m", "homepy", "call", "light", "turn_on"],
+            result = subprocess.run([sys.executable, "-m", "homeassistantpy", "call", "light", "turn_on"],
                                     cwd=root, env=env, capture_output=True, text=True, timeout=10)
             self.assertNotEqual(result.returncode, 0)
             self.assertIn("error", json.loads(result.stderr))
@@ -159,7 +159,7 @@ class HTTPIntegrationTests(unittest.TestCase):
         with home_assistant_server() as (url, requests):
             env = fixture_environment(url)
             root = Path(__file__).resolve().parents[1]
-            command = [sys.executable, "-m", "homepy", "call", "light", "turn_on",
+            command = [sys.executable, "-m", "homeassistantpy", "call", "light", "turn_on",
                        "--target", '{"entity_id":"light.desk"}', "--allow-actions",
                        "--allowed-service"]
             denied = subprocess.run(command + ["light.turn_off"], cwd=root, env=env,
@@ -172,7 +172,7 @@ class HTTPIntegrationTests(unittest.TestCase):
             self.assertEqual(allowed.returncode, 0, allowed.stderr)
             self.assertEqual(json.loads(allowed.stdout)[0]["state"], "on")
             self.assertEqual(requests[-1]["body"], {"entity_id": "light.desk"})
-            read = subprocess.run([sys.executable, "-m", "homepy", "tool", "ha_get_state",
+            read = subprocess.run([sys.executable, "-m", "homeassistantpy", "tool", "ha_get_state",
                                    "--arguments", '{"entity_id":"light.desk"}'],
                                   cwd=root, env=env, capture_output=True, text=True, timeout=10)
             self.assertEqual(read.returncode, 0, read.stderr)

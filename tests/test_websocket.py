@@ -2,9 +2,9 @@ import threading
 import unittest
 from unittest.mock import patch
 
-from homepy.config import ConnectionConfig
-from homepy.exceptions import ResponseError, TransportError, WebSocketAuthenticationError, WebSocketCommandError
-from homepy.websocket_transport import WebSocketTransport
+from homeassistantpy.config import ConnectionConfig
+from homeassistantpy.exceptions import ResponseError, TransportError, WebSocketAuthenticationError, WebSocketCommandError
+from homeassistantpy.websocket_transport import WebSocketTransport
 
 try:
     from ws_fixture import WebSocketFixture

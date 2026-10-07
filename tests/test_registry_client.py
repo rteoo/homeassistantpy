@@ -3,8 +3,8 @@
 import unittest
 from unittest.mock import patch
 
-from homepy import HomeAssistant, ResponseError, WebSocketAuthenticationError, WebSocketCommandError
-from homepy.exceptions import error_details
+from homeassistantpy import HomeAssistant, ResponseError, WebSocketAuthenticationError, WebSocketCommandError
+from homeassistantpy.exceptions import error_details
 
 
 class RegistryClientTests(unittest.TestCase):
@@ -17,17 +17,17 @@ class RegistryClientTests(unittest.TestCase):
         )
         for method, registry, identity, value in cases:
             entries = [{identity: value, "device_id": None, "future": {"preserved": True}}]
-            with self.subTest(registry=registry), patch("homepy.websocket_transport.WebSocketTransport.request", return_value=entries) as request:
+            with self.subTest(registry=registry), patch("homeassistantpy.websocket_transport.WebSocketTransport.request", return_value=entries) as request:
                 self.assertEqual(method(), entries)
                 request.assert_called_once_with(f"config/{registry}/list")
-            with patch("homepy.websocket_transport.WebSocketTransport.request", return_value=[]):
+            with patch("homeassistantpy.websocket_transport.WebSocketTransport.request", return_value=[]):
                 self.assertEqual(method(), [])
 
     def test_invalid_identity_and_containers_are_safe(self):
         client = HomeAssistant("fixture-token")
         for method, identity in ((client.get_areas, "area_id"), (client.get_devices, "id"), (client.get_entity_registry, "entity_id")):
             for payload in (None, {}, ["private"], [{}], [{identity: ""}], [{identity: None}], [{identity: True}]):
-                with self.subTest(method=method.__name__, payload=payload), patch("homepy.websocket_transport.WebSocketTransport.request", return_value=payload):
+                with self.subTest(method=method.__name__, payload=payload), patch("homeassistantpy.websocket_transport.WebSocketTransport.request", return_value=payload):
                     with self.assertRaises(ResponseError) as caught:
                         method()
                     self.assertNotIn("private", str(caught.exception))

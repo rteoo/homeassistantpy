@@ -1,4 +1,4 @@
-# Evaluate native Home Assistant MCP alongside Homepy
+# Evaluate native Home Assistant MCP alongside homeassistantpy
 
 ## Problem Statement
 
@@ -10,14 +10,14 @@ existing integration work or incorrectly promise that MCP provides full UI acces
 ## Solution
 
 Produce an evidence-backed compatibility guide and an opt-in verification
-procedure. Explain when a caller should use native MCP, when Homepy is useful,
+procedure. Explain when a caller should use native MCP, when homeassistantpy is useful,
 and how to evaluate local or Tailscale connectivity without changing household
 settings or exposing credentials.
 
 ## User Stories
 
 1. As an agent operator, I want to know what native MCP supports, so that I do not build a redundant adapter.
-2. As a Python developer, I want to know where Homepy remains useful, so that I can choose a deterministic API.
+2. As a Python developer, I want to know where homeassistantpy remains useful, so that I can choose a deterministic API.
 3. As a user, I want Assist exposure rules explained, so that I know which entities an MCP client can access.
 4. As an operator, I want raw API permissions distinguished from Assist exposure, so that I do not assume identical access boundaries.
 5. As a local user, I want to understand where the MCP client runs, so that a private hostname is not mistakenly handed to an unreachable cloud client.
@@ -34,9 +34,9 @@ settings or exposing credentials.
 - Deliver a compatibility matrix and a concise local-network verification
   runbook. This is an evaluation/documentation increment; no new MCP server,
   Python MCP client, dependency, or agent runtime configuration is added.
-- Compare four surfaces: existing Homepy REST, proposed Homepy WebSocket
+- Compare four surfaces: existing homeassistantpy REST, proposed homeassistantpy WebSocket
   discovery/observation, native MCP with the built-in Assist API, and UI
-  administration features deferred from this release. Mark proposed Homepy
+  administration features deferred from this release. Mark proposed homeassistantpy
   features as planned until they are implemented and verified.
 - Cover entity control, state/context access, exact service calls, registry
   discovery, event streaming, history, conversations, dashboard editing, and
@@ -50,7 +50,7 @@ settings or exposing credentials.
   same transport or authentication flow.
 - Explain that Assist's exposed entities constrain its tools. Raw API access
   follows the token user's server permissions and does not automatically apply
-  that filter. Homepy's service allowlist controls its own tool dispatcher, not
+  that filter. homeassistantpy's service allowlist controls its own tool dispatcher, not
   the MCP server or direct Python usage.
 - Separate direct local client execution from cloud-hosted execution. A local
   hostname or tailnet address is useful only when the executing client can reach
@@ -97,7 +97,7 @@ settings or exposing credentials.
 Installing/enabling the integration, changing exposed entities, generating tokens,
 changing agent runtime settings, OAuth authorization on the user's behalf,
 publishing household metadata, adding MCP proxies, changing network exposure,
-device actions, custom LLM APIs, and implementing a Homepy MCP server.
+device actions, custom LLM APIs, and implementing a homeassistantpy MCP server.
 
 ## Further Notes
 
@@ -106,4 +106,4 @@ and its [Core implementation](https://github.com/home-assistant/core/tree/2026.9
 Verify setup instructions against the selected agent client's own documentation
 when that client is known. The evaluated native capability may remove the need
 for a separate MCP layer, but that is a deployment decision, not evidence that
-Homepy's deterministic REST interface is unnecessary.
+homeassistantpy's deterministic REST interface is unnecessary.

@@ -6,8 +6,8 @@ import traceback
 import unittest
 from unittest.mock import patch
 
-from homepy.config import ConnectionConfig
-from homepy.exceptions import (
+from homeassistantpy.config import ConnectionConfig
+from homeassistantpy.exceptions import (
     APIError,
     AuthenticationError,
     ConfigurationError,
@@ -16,7 +16,7 @@ from homepy.exceptions import (
     TransportError,
     error_details,
 )
-from homepy.transport import MAX_RESPONSE_BYTES, Transport
+from homeassistantpy.transport import MAX_RESPONSE_BYTES, Transport
 
 
 class _Handler(BaseHTTPRequestHandler):

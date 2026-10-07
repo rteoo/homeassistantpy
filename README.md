@@ -1,7 +1,7 @@
-# Homepy
+# homeassistantpy
 
 <p align="center">
-  <img src="docs/homepy-icon.svg" width="128" alt="Homepy icon">
+  <img src="docs/homeassistantpy-icon.svg" width="128" alt="homeassistantpy icon">
 </p>
 
 <p align="center">
@@ -10,12 +10,12 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/rteoo/homepy/actions/workflows/tests.yml"><img src="https://github.com/rteoo/homepy/actions/workflows/tests.yml/badge.svg" alt="Test status"></a>
-  <a href="https://github.com/rteoo/homepy/tags"><img src="https://img.shields.io/github/v/tag/rteoo/homepy?label=stable" alt="Stable tag"></a>
+  <a href="https://github.com/rteoo/homeassistantpy/actions/workflows/tests.yml"><img src="https://github.com/rteoo/homeassistantpy/actions/workflows/tests.yml/badge.svg" alt="Test status"></a>
+  <a href="https://github.com/rteoo/homeassistantpy/tags"><img src="https://img.shields.io/github/v/tag/rteoo/homeassistantpy?label=stable" alt="Stable tag"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="MIT license"></a>
 </p>
 
-Point Homepy at a Home Assistant instance with a long-lived token, then read
+Point homeassistantpy at a Home Assistant instance with a long-lived token, then read
 entity states, call services, browse registries, or watch events from Python,
 the command line, or an agent runtime. It returns Home Assistant's own JSON
 without discarding integration-specific fields, and every device action stays
@@ -37,26 +37,28 @@ disabled until a caller explicitly enables it.
 
 ## Quick start
 
-The current stable release is
-[`v0.2.0`](https://github.com/rteoo/homepy/releases/tag/v0.2.0). Install it
-directly into the Python environment used by your application or agent:
+Install the current source from GitHub:
 
 ```powershell
-python -m pip install git+https://github.com/rteoo/homepy.git@v0.2.0
+python -m pip install git+https://github.com/rteoo/homeassistantpy.git@v1.0.0
 ```
 
-To work from a clone instead:
+For local development:
 
 ```powershell
-git clone https://github.com/rteoo/homepy.git
-cd homepy
+git clone https://github.com/rteoo/homeassistantpy.git
+cd homeassistantpy
 python -m venv .venv
 .venv\Scripts\Activate.ps1
 python -m pip install .
 ```
 
+After the first PyPI publication, install with `python -m pip install homeassistantpy`.
+The existing `v0.2.0` GitHub release predates the rename and uses the old `homepy`
+package and command names.
+
 Use `python -m pip install -e .` for an editable development install. The
-`homepy` console command and `python -m homepy` are both available afterwards.
+`homeassistantpy` console command and `python -m homeassistantpy` are both available afterwards.
 
 ## First use
 
@@ -68,12 +70,12 @@ Use `python -m pip install -e .` for an editable development install. The
 ```powershell
 $env:HA_TOKEN = "<token supplied by your secret manager>"
 $env:HA_URL = "https://ha.example.ts.net"
-python -m homepy health
-python -m homepy states --domain light
+python -m homeassistantpy health
+python -m homeassistantpy states --domain light
 ```
 
 Never put a real token in source code, tool arguments, shell command arguments,
-or a committed file. There is no token command-line option, and Homepy does not
+or a committed file. There is no token command-line option, and homeassistantpy does not
 read `.env` files automatically.
 
 ## Connect
@@ -92,7 +94,7 @@ Configure the connection with environment variables or constructor arguments:
 ```python
 import os
 
-from homepy import HomeAssistant
+from homeassistantpy import HomeAssistant
 
 token = os.environ["HA_TOKEN"]
 ha = HomeAssistant(token, host="homeassistant.local")
@@ -118,7 +120,7 @@ The client exposes direct Python methods that return Home Assistant data without
 discarding integration-specific fields:
 
 ```python
-from homepy import HomeAssistant
+from homeassistantpy import HomeAssistant
 
 ha = HomeAssistant.from_env()
 
@@ -185,8 +187,8 @@ state again when your workflow needs confirmation of its final state.
 descriptors:
 
 ```python
-from homepy import HomeAssistant
-from homepy.agent import AgentTools
+from homeassistantpy import HomeAssistant
+from homeassistantpy.agent import AgentTools
 
 ha = HomeAssistant.from_env()
 agent = AgentTools(
@@ -217,7 +219,7 @@ agent orchestrator remains responsible for user authorization and target
 selection; tool schemas are not a security sandbox.
 
 See [MCP compatibility](docs/mcp-compatibility.md) for the boundary between
-Homepy and Home Assistant's native MCP/Assist surfaces.
+homeassistantpy and Home Assistant's native MCP/Assist surfaces.
 
 ## JSON command line
 
@@ -226,20 +228,20 @@ most one JSON object: an `error` key on failure, with a nonzero exit status,
 and a `warning` key for plain-HTTP connections.
 
 ```powershell
-python -m homepy health
-python -m homepy states --domain light
-python -m homepy state light.desk
-python -m homepy services
-python -m homepy areas
-python -m homepy devices
-python -m homepy entity-registry
-python -m homepy tools
-python -m homepy --host 100.101.102.103 health
-python -m homepy call light turn_on --target '{"entity_id":"light.desk"}' --allow-actions
-python -m homepy tool ha_get_state --arguments '{"entity_id":"light.desk"}'
+python -m homeassistantpy health
+python -m homeassistantpy states --domain light
+python -m homeassistantpy state light.desk
+python -m homeassistantpy services
+python -m homeassistantpy areas
+python -m homeassistantpy devices
+python -m homeassistantpy entity-registry
+python -m homeassistantpy tools
+python -m homeassistantpy --host 100.101.102.103 health
+python -m homeassistantpy call light turn_on --target '{"entity_id":"light.desk"}' --allow-actions
+python -m homeassistantpy tool ha_get_state --arguments '{"entity_id":"light.desk"}'
 ```
 
-`python -m homepy tools` lists tool schemas without a token or network
+`python -m homeassistantpy tools` lists tool schemas without a token or network
 connection. Add `--allowed-service DOMAIN.SERVICE` repeatedly to restrict an
 enabled action tool. Use `--help` on a command for all options.
 
@@ -262,9 +264,9 @@ retry, redirect, use ambient proxies or compression, or promise gap-free
 delivery. The CLI emits one flushed NDJSON event per line:
 
 ```powershell
-python -m homepy watch --event-type state_changed --max-events 10 --duration 15
-python -m homepy tools --include-discovery --include-events
-python -m homepy tool ha_collect_events --include-events --arguments '{"event_type":"state_changed","duration":5}'
+python -m homeassistantpy watch --event-type state_changed --max-events 10 --duration 15
+python -m homeassistantpy tools --include-discovery --include-events
+python -m homeassistantpy tool ha_collect_events --include-events --arguments '{"event_type":"state_changed","duration":5}'
 ```
 
 Python callers may set either event limit to `None`, but at least one limit must
@@ -285,7 +287,7 @@ one. The built-in `home_assistant` agent is selected at those boundaries;
 direct Python callers may provide `agent_id`.
 
 ```powershell
-python -m homepy conversation --text "What time is it?" --allow-actions --allow-conversation
+python -m homeassistantpy conversation --text "What time is it?" --allow-actions --allow-conversation
 ```
 
 An HTTP 200 response can still contain a structured Assist domain error; that
@@ -310,16 +312,16 @@ retried.
 
 ## Data safety and privacy
 
-Homepy talks only to the Home Assistant host you configure. It has no
+homeassistantpy talks only to the Home Assistant host you configure. It has no
 telemetry, stores nothing on disk, and never logs tokens or response bodies.
 
 - TLS certificate verification is enabled by default; use `ca_file` or
   `HA_CA_FILE` for a private CA.
-- Plain HTTP to a non-loopback host emits `homepy.InsecureTransportWarning`
+- Plain HTTP to a non-loopback host emits `homeassistantpy.InsecureTransportWarning`
   because the bearer token is unencrypted. Prefer an HTTPS URL; if using a
   tunnel, verify the actual route. A private or Tailscale-looking address alone
   does not prove encryption. After verifying a tunnel, silence it with
-  `warnings.simplefilter("ignore", homepy.InsecureTransportWarning)`. The CLI
+  `warnings.simplefilter("ignore", homeassistantpy.InsecureTransportWarning)`. The CLI
   reports it as `{"warning": {"code": "insecure_transport", ...}}` on stderr.
 - HTTP redirects are rejected, ambient HTTP proxies are ignored, and failed
   actions are never retried automatically.
@@ -332,10 +334,10 @@ telemetry, stores nothing on disk, and never logs tokens or response bodies.
 
 ## Platform status and limitations
 
-Homepy is pure Python and runs anywhere Python 3.11 or later does. CI runs the
+homeassistantpy is pure Python and runs anywhere Python 3.11 or later does. CI runs the
 suite on Windows and Linux with Python 3.11 and 3.14.
 
-- **Scope:** Homepy does not automate browser clicks, edit dashboards or
+- **Scope:** homeassistantpy does not automate browser clicks, edit dashboards or
   integration registries, or manage Supervisor. Those surfaces need separate
   clients.
 - **Timeouts:** REST timeouts apply per socket operation, not per request.
@@ -350,8 +352,8 @@ Run the complete local verification gates from the repository root:
 
 ```powershell
 python -m unittest discover -s tests -v
-python -m compileall -q homepy tests
-python -m homepy --help
+python -m compileall -q homeassistantpy tests
+python -m homeassistantpy --help
 ```
 
 Build the source archive and wheel when the existing build tools are available:
@@ -368,10 +370,34 @@ Release history is documented in [CHANGELOG.md](CHANGELOG.md).
 
 ## License
 
-Homepy is released under the [MIT License](LICENSE).
+homeassistantpy is released under the [MIT License](LICENSE).
 
 ## Releasing
 
 The `pyproject.toml` version must already be merged to `main`. From a clean checkout matching `origin/main`, run `python release.py --tag vX.Y.Z --dry-run`, then rerun without `--dry-run` and type the tag to confirm.
 
-The release helper runs these gates locally: `python -m unittest discover -s tests -v`, `python -m compileall -q homepy tests`, and `python -S -m homepy --help`. It never bumps, commits, or deploys. A retry is safe only for the same tag when the existing tag points at the exact merged commit and no GitHub release exists; there is no service rollback because this project has no deployment target. The helper uses the current Python runtime; CI remains the authoritative cross-platform check.
+The release helper runs these gates locally: `python -m unittest discover -s tests -v`, `python -m compileall -q homeassistantpy tests`, and `python -S -m homeassistantpy --help`. It never bumps, commits, or deploys. A retry is safe only for the same tag when the existing tag points at the exact merged commit and no GitHub release exists; there is no service rollback because this project has no deployment target. The helper uses the current Python runtime; CI remains the authoritative cross-platform check.
+
+### PyPI publishing
+
+`.github/workflows/publish.yml` runs when a GitHub release is published. It tests
+Python 3.11 and 3.14, requires a `vX.Y.Z` tag matching `pyproject.toml`, builds and
+checks the source distribution and wheel, and smoke-tests the installed wheel
+before uploading to PyPI. The publishing job uses OIDC Trusted Publishing;
+no long-lived PyPI token is stored in GitHub.
+
+Before the first publication, register a pending publisher on
+[PyPI](https://pypi.org/manage/account/publishing/) with these exact values:
+
+- PyPI project: `homeassistantpy`
+- GitHub owner: `rteoo`
+- GitHub repository: `homeassistantpy`
+- Workflow filename: `publish.yml`
+- GitHub environment: `pypi`
+
+See [PyPI's pending publisher guide](https://docs.pypi.org/trusted-publishers/creating-a-project-through-oidc/).
+Configure the repository's `pypi` environment with any desired reviewer and tag
+restrictions before publishing a release. Existing releases do not automatically
+rerun the workflow when it is added. Publish a new release from a tested commit
+containing this workflow; the tag must match the manifest version. PyPI does not
+allow replacing an already published version.

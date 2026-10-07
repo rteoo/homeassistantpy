@@ -6,10 +6,10 @@ import json
 import traceback
 import unittest
 
-from homepy.agent import AgentToolError, AgentTools
-from homepy.config import ConnectionConfig
-from homepy.cli import main
-from homepy.exceptions import APIError, TransportError
+from homeassistantpy.agent import AgentToolError, AgentTools
+from homeassistantpy.config import ConnectionConfig
+from homeassistantpy.cli import main
+from homeassistantpy.exceptions import APIError, TransportError
 
 
 # HTTPS keeps the insecure-transport warning out of stderr in fixtures that

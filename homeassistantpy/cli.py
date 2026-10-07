@@ -114,7 +114,7 @@ def _add_event_options(parser: argparse.ArgumentParser) -> None:
 
 def build_parser() -> argparse.ArgumentParser:
     parser = _ArgumentParser(
-        prog="python -m homepy",
+        prog="python -m homeassistantpy",
         description="Read Home Assistant state or explicitly call an agent tool.",
     )
     _add_connection_options(parser)
