@@ -40,7 +40,7 @@ disabled until a caller explicitly enables it.
 Install the current source from GitHub:
 
 ```powershell
-python -m pip install git+https://github.com/rteoo/homeassistantpy.git@main
+python -m pip install git+https://github.com/rteoo/homeassistantpy.git@v1.0.0
 ```
 
 For local development:

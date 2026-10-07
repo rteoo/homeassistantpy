@@ -7,13 +7,16 @@ All notable changes to this project are documented here. The format follows
 0.1.1 was set in `pyproject.toml` but never tagged, so its changes first reached
 users in 0.2.0; it links to the commit that carried it instead.
 
-## Unreleased
+## [1.0.0] - 2026-10-07
 
 - Rename the distribution, Python package, and console command from `homepy`
   to `homeassistantpy` to avoid the existing PyPI name. Update imports to
   `from homeassistantpy import ...` and commands to `python -m homeassistantpy`.
   The old import and command names are no longer provided. Historical release
-  entries and GitHub links retain their original names.
+  entries retain their original package names; GitHub links use the renamed repository.
+
+- Add release-triggered PyPI Trusted Publishing with offline test, distribution,
+  metadata, and installed-wheel validation gates.
 
 ## [0.2.0] - 2026-09-23
 
@@ -69,5 +72,6 @@ users in 0.2.0; it links to the commit that carried it instead.
 - `TransportError.category` distinguishes DNS, refused-connection, timeout,
   TLS, and other network failures.
 
+[1.0.0]: https://github.com/rteoo/homeassistantpy/releases/tag/v1.0.0
 [0.2.0]: https://github.com/rteoo/homeassistantpy/releases/tag/v0.2.0
 [0.1.1]: https://github.com/rteoo/homeassistantpy/commit/c994a58
