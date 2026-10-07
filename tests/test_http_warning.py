@@ -7,8 +7,8 @@ import unittest
 from unittest.mock import patch
 import warnings
 
-from homepy import HomeAssistant, InsecureTransportWarning
-from homepy.config import ConnectionConfig
+from homeassistantpy import HomeAssistant, InsecureTransportWarning
+from homeassistantpy.config import ConnectionConfig
 
 
 class HttpWarningTests(unittest.TestCase):
@@ -50,8 +50,8 @@ class HttpWarningTests(unittest.TestCase):
         # A subprocess observes the real sys.stderr, where Python's own warning
         # text would otherwise appear beside the JSON document.
         script = (
-            "from homepy.cli import main\n"
-            "from homepy.exceptions import APIError\n"
+            "from homeassistantpy.cli import main\n"
+            "from homeassistantpy.exceptions import APIError\n"
             "class Client:\n"
             "    def health(self): raise APIError('private body', status_code=503)\n"
             "raise SystemExit(main(['--host', '192.0.2.1', 'health'],"

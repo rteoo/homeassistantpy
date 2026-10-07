@@ -28,6 +28,6 @@ jobs:
       - name: Test without site packages
         run: python -S -m unittest discover -s tests -v
       - name: Compile source and tests
-        run: python -m compileall -q homepy tests
+        run: python -m compileall -q homeassistantpy tests
       - name: Check command help
-        run: python -S -m homepy --help
+        run: python -S -m homeassistantpy --help

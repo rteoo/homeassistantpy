@@ -32,7 +32,7 @@ def _validate_port(value: int | None) -> int | None:
 
 
 def _caller_stacklevel() -> int:
-    """Return the stacklevel of the first frame outside homepy.
+    """Return the stacklevel of the first frame outside homeassistantpy.
 
     Configuration is built through several public entry points, so a fixed
     stacklevel would blame library internals instead of the caller's line.

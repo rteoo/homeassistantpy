@@ -2,9 +2,9 @@ import unittest
 import threading
 from unittest.mock import patch
 
-from homepy.config import ConnectionConfig
-from homepy.events import EventStream
-from homepy.exceptions import ResponseError, TransportError
+from homeassistantpy.config import ConnectionConfig
+from homeassistantpy.events import EventStream
+from homeassistantpy.exceptions import ResponseError, TransportError
 
 try:
     from ws_fixture import WebSocketFixture
@@ -127,7 +127,7 @@ class EventStreamTests(unittest.TestCase):
         stream._started = True
         stream._session = FakeSession()
         stream._subscription_id = 1
-        with patch("homepy.events.MAX_EVENT_BYTES", 10):
+        with patch("homeassistantpy.events.MAX_EVENT_BYTES", 10):
             self.assertEqual(next(stream), {"n": 1})
             with self.assertRaises(ResponseError):
                 next(stream)

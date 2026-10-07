@@ -1,4 +1,4 @@
-"""Release an already merged homepy version; never bumps or commits main."""
+"""Release an already merged homeassistantpy version; never bumps or commits main."""
 from __future__ import annotations
 import argparse
 import os
@@ -7,9 +7,9 @@ import subprocess
 import sys
 import tomllib
 from pathlib import Path
-REPO = 'rteoo/homepy'
+REPO = 'rteoo/homeassistantpy'
 ROOT = Path(__file__).resolve().parent
-GATES = [(sys.executable, '-m', 'unittest', 'discover', '-s', 'tests', '-v'), (sys.executable, '-m', 'compileall', '-q', 'homepy', 'tests'), (sys.executable, '-S', '-m', 'homepy', '--help')]
+GATES = [(sys.executable, '-m', 'unittest', 'discover', '-s', 'tests', '-v'), (sys.executable, '-m', 'compileall', '-q', 'homeassistantpy', 'tests'), (sys.executable, '-S', '-m', 'homeassistantpy', '--help')]
 
 def command(*args, capture=True):
     r = subprocess.run(args, text=True, capture_output=capture, check=False)
