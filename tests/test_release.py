@@ -50,7 +50,7 @@ class ReleaseTests(TestCase):
         for output, expected in (("", None), ("b"*40+f"\trefs/tags/{tag}\n", "does not point")):
             calls=[]; fake, _=self._fake(calls, output); gh=Mock(returncode=1, stderr="404 not found")
             with patch.object(release,"command",side_effect=fake), patch.object(release.subprocess,"run",return_value=gh):
-                if expected: 
+                if expected:
                     with self.assertRaisesRegex(RuntimeError, expected): release.main(["--tag",tag,"--dry-run"])
                 else: self.assertEqual(release.main(["--tag",tag,"--dry-run"]), 0)
             self.assertFalse(any(
@@ -58,7 +58,7 @@ class ReleaseTests(TestCase):
                 or c[:3] == ("gh", "release", "create")
                 for c in calls
             ))
-        calls=[]; fake,_=self._fake(calls); 
+        calls=[]; fake,_=self._fake(calls)
         with patch.object(release,"command",side_effect=fake), patch.object(release.subprocess,"run",return_value=Mock(returncode=1,stderr="404")), patch("builtins.input",return_value="no"):
             with self.assertRaisesRegex(RuntimeError,"not confirmed"): release.main(["--tag",tag])
         self.assertFalse(any(c[:2]==("git","push") for c in calls))
