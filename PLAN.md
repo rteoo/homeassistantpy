@@ -1,4 +1,4 @@
-# Homepy implementation plan
+# homeassistantpy implementation plan
 
 Build a reusable Python 3.11+ wrapper for Home Assistant's REST API and selected
 WebSocket capabilities.
@@ -7,13 +7,13 @@ dicts/lists, text for templates/logs, and bytes for camera snapshots.
 
 ## Architecture and ownership
 
-- `homepy/config.py`, `transport.py`, `exceptions.py`: immutable connection
+- `homeassistantpy/config.py`, `transport.py`, `exceptions.py`: immutable connection
   settings, host normalization, bearer authentication, bounded HTTP requests,
   TLS validation, safe errors. No redirects or automatic action retries.
-- `homepy/client.py`: `HomeAssistant` endpoint methods and `from_env()`.
-- `homepy/websocket_transport.py`, `events.py`: standard-library RFC 6455
+- `homeassistantpy/client.py`: `HomeAssistant` endpoint methods and `from_env()`.
+- `homeassistantpy/websocket_transport.py`, `events.py`: standard-library RFC 6455
   transport, registry requests, and closeable bounded event observations.
-- `homepy/agent.py`, `cli.py`, `__main__.py`: framework-neutral JSON tool
+- `homeassistantpy/agent.py`, `cli.py`, `__main__.py`: framework-neutral JSON tool
   definitions/dispatch and a CLI. Agent mutations are opt-in and can be limited
   to exact service names.
 - Parent integration: packaging, docs, examples, full-suite verification,

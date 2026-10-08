@@ -14,8 +14,8 @@ import threading
 import unittest
 from unittest.mock import patch
 
-from homepy import HomeAssistant, TransportError
-from homepy.agent import AgentTools
+from homeassistantpy import HomeAssistant, TransportError
+from homeassistantpy.agent import AgentTools
 from ws_fixture import WebSocketFixture, _read_until, _recv_frame, _send_frame
 
 
@@ -135,7 +135,7 @@ class CapabilityIntegrationTests(unittest.TestCase):
         env = {key: value for key, value in os.environ.items() if not key.startswith("HA_")}
         env["HA_TOKEN"] = TOKEN
         try:
-            result = subprocess.run([sys.executable, "-S", "-m", "homepy", "--host", server.host, "watch", "--event-type", "state_changed", "--max-events", "2", "--duration", "2"], cwd=ROOT, env=env, capture_output=True, text=True, timeout=8)
+            result = subprocess.run([sys.executable, "-S", "-m", "homeassistantpy", "--host", server.host, "watch", "--event-type", "state_changed", "--max-events", "2", "--duration", "2"], cwd=ROOT, env=env, capture_output=True, text=True, timeout=8)
             self.assertEqual(result.returncode, 0, result.stderr)
             self.assertEqual(result.stderr, "")
             self.assertEqual([json.loads(line)["data"]["index"] for line in result.stdout.splitlines()], [0, 1])

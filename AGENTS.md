@@ -1,12 +1,12 @@
-# Homepy
+# homeassistantpy
 
 Follow the active runtime's global `AGENTS.md` and `SOUL.md`. This file
 adds project-specific facts and commands; it cannot weaken global approval
 or privacy rules.
 
-Homepy is a Python 3.11+ standard-library client for Home Assistant's REST
+homeassistantpy is a Python 3.11+ standard-library client for Home Assistant's REST
 and WebSocket APIs, with explicit JSON tools for agents. Runtime code and
-tests use the standard library. Source lives in `homepy/`;
+tests use the standard library. Source lives in `homeassistantpy/`;
 tests live in `tests/`. See `README.md` for public usage and `PLAN.md` for scope.
 
 ## Architecture
@@ -30,8 +30,8 @@ Run from the repository root in PowerShell:
 
 ```powershell
 python -m unittest discover -s tests -v
-python -m compileall -q homepy tests
-python -m homepy --help
+python -m compileall -q homeassistantpy tests
+python -m homeassistantpy --help
 ```
 
 The current host has Python 3.14.6. Tests mock Home Assistant or start loopback

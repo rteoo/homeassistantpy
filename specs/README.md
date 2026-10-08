@@ -1,6 +1,6 @@
-# Homepy agent capabilities: implementation specifications
+# homeassistantpy agent capabilities: implementation specifications
 
-Drafted 2026-09-09 and updated for the dependency-free Homepy 0.2.0
+Drafted 2026-09-09 and updated for the dependency-free homeassistantpy 0.2.0
 implementation on 2026-09-14. Source and tests establish implementation status;
 these contracts do not establish live-instance verification.
 
@@ -11,7 +11,7 @@ these contracts do not establish live-instance verification.
 | 1 | [Registry discovery](01-registry-discovery.md) | Agents can discover areas, devices, and registered entities. | Internal standard-library WebSocket transport. |
 | 2 | [Bounded live events](02-live-events.md) | Agents and scripts can observe changes without polling. | Registry specification's WebSocket transport and error contract. |
 | Independent | [Conversation requests](03-conversation.md) | Python callers can submit sentences to Assist; agent access has explicit policy. | Existing REST transport; no new dependency. |
-| Independent | [Official MCP evaluation](04-official-mcp.md) | A documented choice between native MCP and Homepy for each use case. | Live checks require a separately authorized instance and client. |
+| Independent | [Official MCP evaluation](04-official-mcp.md) | A documented choice between native MCP and homeassistantpy for each use case. | Live checks require a separately authorized instance and client. |
 
 The original goal is broader access to Home Assistant through agents. This
 increment provides discovery, observation, and conversational control. It does
@@ -42,7 +42,7 @@ registry writes, and Supervisor administration require subsequent specifications
 ## Implementation and publication
 
 The user authorized implementation, local commits, a push, and a pull request
-to `rteoo/homepy`. No separate tracker labels or issue metadata are created by
+to `rteoo/homeassistantpy`. No separate tracker labels or issue metadata are created by
 the implementation. The later requirement that every installation remain
 dependency-free supersedes the original optional WebSocket dependency proposal.
 

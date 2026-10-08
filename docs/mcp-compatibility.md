@@ -1,13 +1,13 @@
 # Home Assistant MCP compatibility
 
-This guide compares Home Assistant's native MCP server with Homepy's
+This guide compares Home Assistant's native MCP server with homeassistantpy's
 dependency-free client. It records documented capability boundaries; it is not
 evidence of a live installation. The live verification procedure below was not
 run because no instance or credentials were authorized.
 
 ## Compatibility matrix
 
-| Capability | Homepy REST | Homepy WebSocket (0.2.0) | Native MCP with Assist | UI administration |
+| Capability | homeassistantpy REST | homeassistantpy WebSocket (0.2.0) | Native MCP with Assist | UI administration |
 | --- | --- | --- | --- | --- |
 | Entity state/context | Supported | Registry metadata only; current states use REST | Conditional: Assist exposes permitted entity context | Deferred from this increment |
 | Exact service calls | Supported with explicit agent policy | Deferred | Conditional: Assist decides the action and exposed entities | Deferred from this increment |
@@ -19,7 +19,7 @@ run because no instance or credentials were authorized.
 | Integration registry/configuration | Unsupported | Unsupported | Unsupported by the documented Assist surface | Deferred from this increment |
 | Supervisor administration | Unsupported | Unsupported | Unsupported by the documented Assist surface | Deferred from this increment |
 
-“Supported” describes an implemented Homepy surface or documented native MCP
+“Supported” describes an implemented homeassistantpy surface or documented native MCP
 capability; it does not claim live-instance verification. “Conditional” depends
 on Home Assistant configuration, exposed
 entities, user permissions, and the selected MCP client. “Unverified” means the
@@ -35,8 +35,8 @@ Clients without Streamable HTTP support may need a compatible local gateway.
 Network reachability must still be supplied by the deployment.
 
 Native MCP control is constrained by Home Assistant's exposed-entities setting.
-Raw Homepy REST/WebSocket access follows the token user's server permissions;
-Homepy's `allowed_services` policy applies only to its own agent adapter.
+Raw homeassistantpy REST/WebSocket access follows the token user's server permissions;
+homeassistantpy's `allowed_services` policy applies only to its own agent adapter.
 Neither policy changes the other surface.
 
 A local hostname or Tailscale address works only when the MCP client runs where
@@ -47,8 +47,8 @@ installation, or settings change.
 ## Recommendation
 
 Use native MCP for Assist-style control when its exposed-entity boundary and
-available tools fit the agent. Use Homepy for explicit REST service requests,
-registry discovery, and bounded event observation. Homepy's local policy is
+available tools fit the agent. Use homeassistantpy for explicit REST service requests,
+registry discovery, and bounded event observation. homeassistantpy's local policy is
 useful only when calls go through its agent adapter; direct Python methods use
 the token user's Home Assistant permissions. Neither option provides complete
 UI administration. Registry commands were checked against Home Assistant Core

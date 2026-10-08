@@ -3,7 +3,7 @@ requires = ["setuptools>=77"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "homepy"
+name = "homeassistantpy"
 version = "0.2.0"
 description = "Home Assistant REST client and JSON tools for agents"
 readme = "README.md"
@@ -13,11 +13,11 @@ license-files = ["LICENSE"]
 dependencies = []
 
 [project.scripts]
-homepy = "homepy.cli:main"
+homeassistantpy = "homeassistantpy.cli:main"
 
 [tool.setuptools]
-packages = ["homepy"]
+packages = ["homeassistantpy"]
 include-package-data = false
 
 [tool.setuptools.package-data]
-homepy = ["py.typed"]
+homeassistantpy = ["py.typed"]

@@ -5,7 +5,7 @@ import json
 from threading import Event, Thread
 import unittest
 
-from homepy import HomeAssistant, ResponseError, TransportError
+from homeassistantpy import HomeAssistant, ResponseError, TransportError
 from test_integration import home_assistant_server
 
 

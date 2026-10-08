@@ -3,14 +3,14 @@ from datetime import datetime, timezone
 import os
 from unittest.mock import patch
 
-from homepy.client import HomeAssistant
-from homepy.exceptions import ResponseError
+from homeassistantpy.client import HomeAssistant
+from homeassistantpy.exceptions import ResponseError
 
 
 class ClientTests(unittest.TestCase):
     def setUp(self) -> None:
         self.client = HomeAssistant("token", "192.0.2.1")
-        self.request = patch("homepy.client.Transport.request").start()
+        self.request = patch("homeassistantpy.client.Transport.request").start()
         self.addCleanup(patch.stopall)
 
     def test_basic_endpoints(self) -> None:

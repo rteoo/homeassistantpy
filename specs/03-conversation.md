@@ -2,11 +2,11 @@
 
 ## Problem Statement
 
-Homepy exposes named intent handling, but callers cannot submit a sentence to
+homeassistantpy exposes named intent handling, but callers cannot submit a sentence to
 Home Assistant's conversation API or continue a conversation using its returned
 ID. Adding this directly to the current service tool would bypass the meaning
 of an exact service allowlist: a sentence can cause actions whose services are
-not known to Homepy before the request executes.
+not known to homeassistantpy before the request executes.
 
 ## Solution
 
@@ -23,7 +23,7 @@ calls available for workloads that require exact service restrictions.
 4. As a user, I want to preserve a conversation ID, so that follow-up requests retain context.
 5. As an agent developer, I want structured target results, so that I can distinguish full, partial, and failed actions.
 6. As an agent developer, I want recognition errors preserved, so that I can ask for clarification instead of claiming success.
-7. As an operator, I want conversation tools disabled by default, so that upgrading Homepy grants no new action capability.
+7. As an operator, I want conversation tools disabled by default, so that upgrading homeassistantpy grants no new action capability.
 8. As an operator, I want service allowlists protected, so that natural language cannot circumvent existing restrictions.
 9. As a CLI user, I want one JSON response, so that conversation calls work in scripts.
 10. As a user, I want unknown response fields retained, so that future response metadata remains accessible.

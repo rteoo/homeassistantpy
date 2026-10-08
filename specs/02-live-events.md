@@ -2,7 +2,7 @@
 
 ## Problem Statement
 
-Homepy's event-listing operation describes registered listeners; it does not
+homeassistantpy's event-listing operation describes registered listeners; it does not
 subscribe to live events. Agents must currently poll for state changes, and a
 long-running unbounded subscription would fit poorly inside a finite tool call.
 

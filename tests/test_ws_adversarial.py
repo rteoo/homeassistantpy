@@ -8,8 +8,8 @@ import traceback
 import unittest
 from unittest.mock import Mock
 
-from homepy import ConnectionConfig, HomeAssistant, ResponseError, TransportError
-from homepy.websocket_transport import WebSocketSession
+from homeassistantpy import ConnectionConfig, HomeAssistant, ResponseError, TransportError
+from homeassistantpy.websocket_transport import WebSocketSession
 from ws_fixture import WebSocketFixture
 
 

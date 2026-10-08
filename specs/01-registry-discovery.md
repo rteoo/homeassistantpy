@@ -2,7 +2,7 @@
 
 ## Problem Statement
 
-Homepy can read current entity states and call services, but an agent cannot
+homeassistantpy can read current entity states and call services, but an agent cannot
 reliably discover the IDs that connect entities to devices and rooms. Asking it
 to operate on a room therefore requires manually supplied identifiers or guesses.
 Runtime state data alone does not describe the installation's registry structure.
@@ -136,4 +136,4 @@ Command contracts should be checked in the corresponding Core
 and [entity](https://github.com/home-assistant/core/blob/2026.9.1/homeassistant/components/config/entity_registry.py)
 registry handlers; the latter two are implementation verification targets, not
 claimed live-instance evidence. The transport implementation is intentionally
-owned by Homepy and has no third-party dependency contract.
+owned by homeassistantpy and has no third-party dependency contract.

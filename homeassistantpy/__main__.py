@@ -1,4 +1,4 @@
-"""Entry point for ``python -m homepy``."""
+"""Entry point for ``python -m homeassistantpy``."""
 
 from .cli import main
 

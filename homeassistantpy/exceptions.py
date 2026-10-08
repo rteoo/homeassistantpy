@@ -4,7 +4,7 @@ from __future__ import annotations
 
 
 class HomeAssistantError(Exception):
-    """Base class for errors raised by homepy."""
+    """Base class for errors raised by homeassistantpy."""
 
 
 class ConfigurationError(HomeAssistantError):

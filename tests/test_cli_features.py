@@ -7,9 +7,9 @@ import subprocess
 import sys
 import unittest
 
-from homepy.agent import AgentToolError, AgentTools
-from homepy.cli import main
-from homepy.exceptions import WebSocketCommandError
+from homeassistantpy.agent import AgentToolError, AgentTools
+from homeassistantpy.cli import main
+from homeassistantpy.exceptions import WebSocketCommandError
 
 
 # HTTPS keeps the insecure-transport warning out of stderr in fixtures that
@@ -278,7 +278,7 @@ class CLIFeatureTests(unittest.TestCase):
     def test_closed_stdout_pipe_has_no_shutdown_traceback(self):
         script = (
             "import sys\n"
-            "from homepy.cli import main\n"
+            "from homeassistantpy.cli import main\n"
             "class S:\n"
             "    def __enter__(self): return self\n"
             "    def __exit__(self, *args): self.close()\n"
