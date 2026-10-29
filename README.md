@@ -1,3 +1,5 @@
+# homeassistantpy
+
 <p align="center">
   <img src="https://raw.githubusercontent.com/rteoo/homeassistantpy/main/docs/homeassistantpy-icon.svg" width="128" alt="homeassistantpy icon">
 </p>
